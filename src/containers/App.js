@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 
 import {getCountries} from "../redux/country/actions";
+
+import ListCountries from "./ListCountries/ListCountries";
 import Autocomplete from "./Autocomplete/Autocomplete";
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
         <div className="container">
             <div className="container-timezone">
                     <Autocomplete />
+                    <ListCountries/>
             </div>
         </div>
     );

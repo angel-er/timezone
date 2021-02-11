@@ -1935,6 +1935,82 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/components/card.js":
+/*!********************************!*\
+  !*** ./src/components/card.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Card = ({
+  timezone,
+  deleteTimezone
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container-list--cards"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item--delete",
+    onClick: () => deleteTimezone(timezone)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "x")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item--information"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item--timezone"
+  }, timezone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item--date"
+  }, 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "card-item--time"
+  }, 3))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Card);
+
+/***/ }),
+
+/***/ "./src/components/col.js":
+/*!*******************************!*\
+  !*** ./src/components/col.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Col = ({
+  children,
+  xs,
+  sm,
+  md,
+  lg
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: `col-xs-${xs} col-sm-${sm} col-md-${md} col-lg-${lg}`
+  }, children);
+};
+
+Col.defaultProps = {
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 6
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Col);
+
+/***/ }),
+
 /***/ "./src/components/item.js":
 /*!********************************!*\
   !*** ./src/components/item.js ***!
@@ -1960,6 +2036,32 @@ const Item = ({
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Item);
+
+/***/ }),
+
+/***/ "./src/components/row.js":
+/*!*******************************!*\
+  !*** ./src/components/row.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Row = ({
+  children
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "row"
+  }, children);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Row);
 
 /***/ }),
 
@@ -2060,7 +2162,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_country_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/country/actions */ "./src/redux/country/actions.js");
-/* harmony import */ var _Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Autocomplete/Autocomplete */ "./src/containers/Autocomplete/Autocomplete.js");
+/* harmony import */ var _ListCountries_ListCountries__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ListCountries/ListCountries */ "./src/containers/ListCountries/ListCountries.js");
+/* harmony import */ var _Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Autocomplete/Autocomplete */ "./src/containers/Autocomplete/Autocomplete.js");
+
 
 
 
@@ -2079,7 +2183,7 @@ const App = () => {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container-timezone"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.default, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ListCountries_ListCountries__WEBPACK_IMPORTED_MODULE_3__.default, null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -2173,6 +2277,58 @@ const Autocomplete = () => {
 
 /***/ }),
 
+/***/ "./src/containers/ListCountries/ListCountries.js":
+/*!*******************************************************!*\
+  !*** ./src/containers/ListCountries/ListCountries.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_country_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/country/actions */ "./src/redux/country/actions.js");
+/* harmony import */ var _components_row__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/row */ "./src/components/row.js");
+/* harmony import */ var _components_col__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/col */ "./src/components/col.js");
+/* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/card */ "./src/components/card.js");
+
+
+
+
+
+
+
+const Cards = props => {
+  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.Country);
+  const disaptch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const [cards, setCards] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setCards(state.cards);
+  }, [state.cards]);
+
+  const deleteTimezone = timezone => {
+    disaptch((0,_redux_country_actions__WEBPACK_IMPORTED_MODULE_2__.deleteCountry)(timezone));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container-list--cards"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_row__WEBPACK_IMPORTED_MODULE_3__.default, null, cards.map((card, i) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_col__WEBPACK_IMPORTED_MODULE_4__.default, {
+    lg: 3,
+    key: i
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card__WEBPACK_IMPORTED_MODULE_5__.default, {
+    timezone: card.timezone,
+    card: card,
+    deleteTimezone: deleteTimezone
+  })))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cards);
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -2208,7 +2364,9 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPOR
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getCountries": () => (/* binding */ getCountries)
+/* harmony export */   "getCountries": () => (/* binding */ getCountries),
+/* harmony export */   "addCountry": () => (/* binding */ addCountry),
+/* harmony export */   "deleteCountry": () => (/* binding */ deleteCountry)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2232,6 +2390,16 @@ const failure = msgError => ({
   msgError
 });
 
+const postCountry = country => ({
+  type: _constants__WEBPACK_IMPORTED_MODULE_1__.ADD_COUNTRY,
+  country
+});
+
+const updateList = country => ({
+  type: _constants__WEBPACK_IMPORTED_MODULE_1__.DELETE_COUNTRY,
+  country
+});
+
 const getCountries = () => dispatch => {
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get(`${API_URL}/api/timezone`).then(response => {
     if (response.status === 200) {
@@ -2240,6 +2408,31 @@ const getCountries = () => dispatch => {
   }).catch(request => {
     dispatch(failure(request.response ? request.response.data.details[0].message : ERROR_MESSAGE));
   });
+};
+const addCountry = name => dispatch => {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(`${API_URL}/api/timezone/${name}`).then(response => {
+    if (response.status === 200) {
+      console.log("Response one timezone: ", response.data);
+      dispatch(postCountry(response.data));
+    }
+  }).catch(request => {
+    console.log(request.response);
+    dispatch(failure(request.response ? request.response.data.details[0].message : ERROR_MESSAGE));
+  });
+};
+const deleteCountry = name => dispatch => {
+  // return axios.delete(`${API_URL}/api/timezone/${name}`)
+  //         .then(response => {
+  //             if(response.status === 200){
+  //                 console.log("Response one timezone: ", response.data)
+  //                 dispatch(postCountry(response.data))
+  //             }
+  //         })
+  //         .catch(request => {
+  //             console.log(request.response)
+  //             dispatch(failure(request.response ? request.response.data.details[0].message : ERROR_MESSAGE))
+  //         })
+  return dispatch(updateList(name));
 };
 
 /***/ }),
@@ -2254,10 +2447,14 @@ const getCountries = () => dispatch => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "GET_COUNTRIES": () => (/* binding */ GET_COUNTRIES),
-/* harmony export */   "FAILURE": () => (/* binding */ FAILURE)
+/* harmony export */   "FAILURE": () => (/* binding */ FAILURE),
+/* harmony export */   "ADD_COUNTRY": () => (/* binding */ ADD_COUNTRY),
+/* harmony export */   "DELETE_COUNTRY": () => (/* binding */ DELETE_COUNTRY)
 /* harmony export */ });
 const GET_COUNTRIES = "GET_COUNTRIES";
 const FAILURE = "FAILURE";
+const ADD_COUNTRY = "ADD_COUNTRY";
+const DELETE_COUNTRY = "DELETE_COUNTRY";
 
 /***/ }),
 
@@ -2275,13 +2472,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/redux/country/constants.js");
 
 const initState = {
-  countries: []
+  countries: [],
+  cards: [{
+    abbreviation: "-03",
+    client_ip: "181.167.203.139",
+    datetime: "2021-02-10T17:17:32.025521-03:00",
+    day_of_week: 3,
+    day_of_year: 41,
+    dst: false,
+    dst_from: null,
+    dst_offset: 0,
+    dst_until: null,
+    raw_offset: -10800,
+    timezone: "America/Argentina/Ushuaia",
+    unixtime: 1612988252,
+    utc_datetime: "2021-02-10T20:17:32.025521+00:00",
+    utc_offset: "-03:00",
+    week_number: 6
+  }, {
+    abbreviation: "-03",
+    client_ip: "181.167.203.139",
+    datetime: "2021-02-10T17:17:32.025521-03:00",
+    day_of_week: 3,
+    day_of_year: 41,
+    dst: false,
+    dst_from: null,
+    dst_offset: 0,
+    dst_until: null,
+    raw_offset: -10800,
+    timezone: "America/Argentina/San_Luis",
+    unixtime: 1612988252,
+    utc_datetime: "2021-02-10T20:17:32.025521+00:00",
+    utc_offset: "-03:00",
+    week_number: 6
+  }]
 };
 function reducerCountry(state = initState, action) {
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__.GET_COUNTRIES:
       return { ...state,
         countries: action.countries
+      };
+
+    case _constants__WEBPACK_IMPORTED_MODULE_0__.ADD_COUNTRY:
+      return { ...state,
+        cards: state.cards.find(card => card.timezone === action.country.timezone) ? state.cards : state.cards.concat([action.country])
+      };
+
+    case _constants__WEBPACK_IMPORTED_MODULE_0__.DELETE_COUNTRY:
+      return { ...state,
+        cards: state.cards.filter(country => country.timezone !== action.country)
       };
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__.FAILURE:
