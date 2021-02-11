@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "http://worldtimeapi.org"
+  "REACT_APP_API_URL": "http://worldtimeapi.org"
 };
