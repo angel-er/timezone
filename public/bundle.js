@@ -103,6 +103,69 @@ function _setPrototypeOf(o, p) {
 
 /***/ }),
 
+/***/ "./src/components/uielements/button.js":
+/*!*********************************************!*\
+  !*** ./src/components/uielements/button.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Button = ({
+  onClick,
+  disabled
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "save-option",
+    onClick: onClick,
+    disabled: disabled
+  }, "Save");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
+
+/***/ }),
+
+/***/ "./src/components/uielements/input.js":
+/*!********************************************!*\
+  !*** ./src/components/uielements/input.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Input = ({
+  search,
+  setSearch,
+  setDisplay,
+  placeholder
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    placeholder: placeholder,
+    type: "text",
+    name: "search",
+    value: search,
+    onChange: event => setSearch(event.target.value),
+    onClick: () => setDisplay(true)
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Input);
+
+/***/ }),
+
 /***/ "./src/containers/App.js":
 /*!*******************************!*\
   !*** ./src/containers/App.js ***!
@@ -115,6 +178,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Autocomplete/Autocomplete */ "./src/containers/Autocomplete/Autocomplete.js");
+
 
 
 const App = () => {
@@ -122,10 +187,40 @@ const App = () => {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container-timezone"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hola Mundo")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_1__.default, null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/containers/Autocomplete/Autocomplete.js":
+/*!*****************************************************!*\
+  !*** ./src/containers/Autocomplete/Autocomplete.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_uielements_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/uielements/input */ "./src/components/uielements/input.js");
+/* harmony import */ var _components_uielements_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/uielements/button */ "./src/components/uielements/button.js");
+
+
+
+
+const Autocomplete = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "select-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "search-country"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_uielements_input__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_uielements_button__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Autocomplete);
 
 /***/ }),
 
@@ -151,7 +246,7 @@ __webpack_require__.r(__webpack_exports__);
 
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {
   store: _redux_store__WEBPACK_IMPORTED_MODULE_4__.default
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_3__.default, null)), ","), document.getElementById("app-root"));
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_3__.default, null))), document.getElementById("app-root"));
 
 /***/ }),
 
