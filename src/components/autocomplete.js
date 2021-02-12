@@ -6,7 +6,8 @@ const Autocomplete = ({
     setDisplay, 
     saveOption, 
     search, 
-    display, 
+    display,
+    disactiveBtn,
     countries, 
     setCountry,
     cards
@@ -24,30 +25,28 @@ const Autocomplete = ({
                         onClick={() => setDisplay(true)}  
                     />
                     <button 
-                        className={`button-${!search ? "disabled" : "active"}`}
+                        className={`button-${!search || !disactiveBtn ? "disabled" : "active"}`}
                         onClick={saveOption} 
                         disabled={!search}
                     >Save</button>
             </div>
 
-            {display &&
-                <div className={`container-autocomplete--select ${display ? "active" : ""}`}>
-                    {countries
-                        .filter(country => country.toLowerCase().indexOf(search.toLowerCase()) > -1)
-                        .map((country, i) => {
-                                const selected = cards.some(elem => elem.timezone === country)
-                                return <div 
-                                    key={i}
-                                    className={`option ${selected ? "option-disabled" : ""}`}
-                                    onClick={() => !selected ? setCountry(country) : null} 
-                                    >
-                                    <div>{country}</div>
-                                </div>
-                            }
-                        )
-                    }
-                </div>
-            }
+            <div className={`container-autocomplete--select ${display ? "active" : ""}`}>
+                {countries
+                    .filter(country => country.toLowerCase().indexOf(search.toLowerCase()) > -1)
+                    .map((country, i) => {
+                            const selected = cards.some(elem => elem.timezone === country)
+                            return <div 
+                                key={i}
+                                className={`option ${selected ? "option-disabled" : ""}`}
+                                onClick={() => !selected ? setCountry(country) : null} 
+                                >
+                                <div>{country}</div>
+                            </div>
+                        }
+                    )
+                }
+            </div>
         </div>
     );
 }

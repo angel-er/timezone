@@ -44,3 +44,26 @@
         }
     }
 }
+
+/*------------------------------------*\
+* AUTOCOMPLETE
+\*------------------------------------*/
+@mixin flexDirectionColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexDirectionRow {
+    display: flex;
+    flex-direction: row;
+}
+
+/*------------------------------------*\
+* AUTOCOMPLETE
+\*------------------------------------*/
+
+@mixin btnAutocomplete($bgColor, $borColor, $borWidth: 1px, $brStyle: solid) {
+    background: $bgColor;
+    border: $borWidth $brStyle $borColor;
+}
+

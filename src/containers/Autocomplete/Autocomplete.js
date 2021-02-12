@@ -12,12 +12,17 @@ const Autocomplete = () => {
     const [display, setDisplay] = useState(false)
     const [search, setSearch] = useState("");
     const [countries, setCountries] = useState([]);
+    const [disactiveBtn, setDisactiveBtn] = useState(false);
 
     const wrapperRef = useRef();
     
     useEffect(() => {
         setCountries(state.countries)
     }, [state.countries]);
+
+    useEffect(() => {
+        setDisactiveBtn(true)
+    }, [state.cards])
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -40,6 +45,7 @@ const Autocomplete = () => {
     }
 
     const saveOption = () => {
+        setDisactiveBtn(false)
         dispatch(addCountry(search))
     }
     
@@ -51,6 +57,7 @@ const Autocomplete = () => {
             saveOption={saveOption}
             search={search}
             display={display}
+            disactiveBtn={disactiveBtn}
             countries={countries}
             setCountry={setCountry}
             cards={state.cards}

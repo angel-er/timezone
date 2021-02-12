@@ -1,14 +1,12 @@
 .card-item {
     height: 200px;
-    // width: 300px;
     margin: 0 auto;
     background: #b8b5b5;
     font-size: large;
     padding: 5px;
     border-radius: 10px;
 
-    display: flex;
-    flex-direction: column;
+    @include flexDirectionColumn;
     
 
     &:hover {
@@ -29,7 +27,6 @@
     .card-item--delete {
         display: flex;
         justify-content: flex-end;
-        align-items: center;
 
         div {
             color: cornsilk;
@@ -55,13 +52,14 @@
     }
 
     .card-item--information {
-        display: flex;
-        flex-direction: column;
+        @include flexDirectionColumn;
+        flex: 1;
         align-items: center;
         justify-content: space-evenly;
-        flex: 1;
+
         .card-item--timezone {
             font-weight: bold;
+             font-size: calc(0.6em + 0.6vw)
 
         }
     }

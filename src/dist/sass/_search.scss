@@ -1,12 +1,19 @@
+
 .container-autocomplete--input {
     height: 35px;
-    display: flex;
-    flex-direction: row;
+    @include flexDirectionRow;
 
     input {
         width: 100%;
         border-radius: 8px 0 0 8px;
-        border: 2px solid #9aa0a8;
+        /*****************************************************************
+            @include btnAutocomplete(param-1, param-2, param-3, param-4) {
+                background: param-1
+                border:  param-1    param-3     param-4
+                      (default 1px)          (default solid)
+            }
+        *********************************************************************/
+        @include btnAutocomplete(none, $btnBorderColor, 2px);
         padding-left: 5px;
 
         &:focus {
@@ -18,31 +25,39 @@
     .button-active,
     .button-disabled {
         padding: 8px;
-        background: #525861;
         cursor: pointer;
         color: $white;
-        border: 1px solid #525861;
         border-radius: 0 8px 8px 0;
-        
+        font-weight: bold;
         align-self: center;
         
-        &:focus,
-        &:active {
+        &:focus {
             outline-style: none;
         }
         
-        &:active {
-            background: #9aa0a8;
-            border: 1px solid #9aa0a8;
+    }
+    
+    .button-active {
+        @include btnAutocomplete(#525861, #525861, 2px);
+
+        &:hover {
+            @include btnAutocomplete(#606772, #606772, 2px);
+
         }
+        
+        &:active {
+            @include btnAutocomplete($bgButton, $btnBorderColor, 2px);
+        }
+
     }
     
     .button-disabled {
-        background: #9aa0a8;
-        border-radius: 0 8px 8px 0;
+        @include btnAutocomplete($bgButton, $btnBorderColor, 2px);
         cursor: auto;
+        
         &:active {
-            background: none;
+            @include btnAutocomplete(none, $btnBorderColor, 2px);
+            border-radius: 0 8px 8px 0;
         }
     }
 }

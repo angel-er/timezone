@@ -21,14 +21,16 @@ body,
     width: 100%;
     padding-top: 50px;
     display: grid;
-    gap: 5px;
+    gap: 50px;
+    color: $scrollbar;
 
     
     .container-autocomplete {
         justify-content: center;
-        height: 270px;
         width: 70%;
         margin: 0 auto;
+
+        position: relative;
         
     }
             
