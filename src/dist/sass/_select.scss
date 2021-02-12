@@ -1,0 +1,46 @@
+.container-autocomplete--select {
+    background: $bgSelect;
+    border-radius: 8px;
+    color: $white;
+    max-height: 0;
+    opacity: 0;
+    overflow:hidden;
+    transition: all 0.4s;
+    position: absolute;
+    z-index: 1;
+
+    width: 100%;
+
+    .option {
+        cursor: pointer;
+        padding: 10px;
+
+        &:hover {
+            background: $bgItem;
+        }
+    }
+
+    .option-disabled {
+        background: $bgItem;
+    }
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        background: $scrollbar;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: $scrollthumb;
+        height: 80px;
+        border-radius: 8px 8px 8px 8px;
+    }
+
+}
+
+.active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+
+}

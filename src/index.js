@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
-// import {Provider} from "react-redux";
+import {Provider} from "react-redux";
 
-// import App from "./containers/App";
-// import store from "./redux/store";
+import App from "./containers/App";
+import store from "./redux/store";
+
+import "./dist/sass/style.scss";
 
 ReactDOM.render(
-    // <Provider store={store}>
+    <Provider store={store}>
         <BrowserRouter>
-            <h1>Hola Mundo</h1>
-        </BrowserRouter>,
-    // </Provider>,
+            <App />
+        </BrowserRouter>
+    </Provider>,
     document.getElementById("app-root")
 );

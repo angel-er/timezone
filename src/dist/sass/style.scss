@@ -1,0 +1,42 @@
+@import "./variables";
+@import "./colors";
+@import "./mixins";
+@import "./search";
+@import "./select";
+@import "./grid";
+@import "./card";
+
+html,
+body,
+#app-root {
+    background: #ebe9e9;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 100%;
+    padding-top: 50px;
+    display: grid;
+    gap: 50px;
+    color: $scrollbar;
+
+    
+    .container-autocomplete {
+        justify-content: center;
+        width: 70%;
+        margin: 0 auto;
+
+        position: relative;
+        
+    }
+            
+    .container-list--cards{
+        width: 90%;
+
+    }
+
+}

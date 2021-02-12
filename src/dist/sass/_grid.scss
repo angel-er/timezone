@@ -1,0 +1,32 @@
+@import "./mixins";
+
+.container-list--cards {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+
+
+        @include xs {
+            @include gridGenerator($breakpoint: 'xs', $offset: true);
+        }
+
+        @include sm {
+            @include gridGenerator($breakpoint: 'sm', $offset: true);
+        }
+
+        @include md {
+            @include gridGenerator($breakpoint: 'md', $offset: true);
+        }
+
+        @include lg {
+            @include gridGenerator($breakpoint: 'lg', $offset: true);
+        }
+
+
+    }
+}

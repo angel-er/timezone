@@ -1,0 +1,69 @@
+@mixin xs {
+    @media (max-width: #{$screen-xs-max}) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+@mixin gridGenerator($breakpoint, $offset: false) {
+
+    /*------------------------------------*\
+    # COLUMNS
+    \*------------------------------------*/
+    @for $column from 1 through $columns-number+1 {
+        .col-#{$breakpoint}-#{$column} {
+            width: 100% / $column;
+        }
+    }
+
+    /*------------------------------------*\
+    # OFFSET COLUMNS
+    \*------------------------------------*/
+    @if $offset {
+        @for $column from 1 to $columns-number+1 {
+            .col-#{$breakpoint}-offset-#{$column} {
+                margin-left: (100% * $column) / $columns-number;
+            }
+        }
+    }
+}
+
+/*------------------------------------*\
+* AUTOCOMPLETE
+\*------------------------------------*/
+@mixin flexDirectionColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexDirectionRow {
+    display: flex;
+    flex-direction: row;
+}
+
+/*------------------------------------*\
+* AUTOCOMPLETE
+\*------------------------------------*/
+
+@mixin btnAutocomplete($bgColor, $borColor, $borWidth: 1px, $brStyle: solid) {
+    background: $bgColor;
+    border: $borWidth $brStyle $borColor;
+}
+
