@@ -18,10 +18,15 @@ const App = () => {
 
     return (
         <div className="container">
-            <div className="container-timezone">
-                    <Autocomplete />
-                    <ListCountries/>
+            <div className="container-ball">
+                <div className="ball-1"></div>
+                <div className="ball-2"></div>
+                <div className="ball-3"></div>
+                <div className="ball-4"></div>
+                <div className="ball-5"></div>
             </div>
+            <Autocomplete />
+            <ListCountries/>
         </div>
     );
 }

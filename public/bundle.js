@@ -1935,6 +1935,63 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/components/autocomplete.js":
+/*!****************************************!*\
+  !*** ./src/components/autocomplete.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+const Autocomplete = ({
+  wrapperRef,
+  setSearch,
+  setDisplay,
+  saveOption,
+  search,
+  display,
+  countries,
+  setCountry,
+  cards
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    ref: wrapperRef,
+    className: "container-autocomplete"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container-autocomplete--input"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    placeholder: "Choose a time zone of a contry",
+    type: "text",
+    name: "search",
+    value: search,
+    onChange: event => setSearch(event.target.value),
+    onClick: () => setDisplay(true)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: `button-${!search ? "disabled" : "active"}`,
+    onClick: saveOption,
+    disabled: !search
+  }, "Save")), display && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: `container-autocomplete--select ${display ? "active" : ""}`
+  }, countries.filter(country => country.toLowerCase().indexOf(search.toLowerCase()) > -1).map((country, i) => {
+    const selected = cards.some(elem => elem.timezone === country);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: i,
+      className: `option ${selected ? "option-disabled" : ""}`,
+      onClick: () => !selected ? setCountry(country) : null
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, country));
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Autocomplete);
+
+/***/ }),
+
 /***/ "./src/components/card.js":
 /*!********************************!*\
   !*** ./src/components/card.js ***!
@@ -2025,34 +2082,6 @@ Col.defaultProps = {
 
 /***/ }),
 
-/***/ "./src/components/item.js":
-/*!********************************!*\
-  !*** ./src/components/item.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-const Item = ({
-  country,
-  setCountry
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "option",
-    onClick: () => setCountry(country)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, country));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Item);
-
-/***/ }),
-
 /***/ "./src/components/row.js":
 /*!*******************************!*\
   !*** ./src/components/row.js ***!
@@ -2076,69 +2105,6 @@ const Row = ({
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Row);
-
-/***/ }),
-
-/***/ "./src/components/uielements/button.js":
-/*!*********************************************!*\
-  !*** ./src/components/uielements/button.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-const Button = ({
-  onClick,
-  disabled
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "save-option",
-    onClick: onClick,
-    disabled: disabled
-  }, "Save");
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
-
-/***/ }),
-
-/***/ "./src/components/uielements/input.js":
-/*!********************************************!*\
-  !*** ./src/components/uielements/input.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-const Input = ({
-  search,
-  setSearch,
-  setDisplay,
-  placeholder
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    placeholder: placeholder,
-    type: "text",
-    name: "search",
-    value: search,
-    onChange: event => setSearch(event.target.value),
-    onClick: () => setDisplay(true)
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Input);
 
 /***/ }),
 
@@ -2196,8 +2162,18 @@ const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container-timezone"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ListCountries_ListCountries__WEBPACK_IMPORTED_MODULE_3__.default, null)));
+    className: "container-ball"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ball-1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ball-2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ball-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ball-4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ball-5"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Autocomplete_Autocomplete__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ListCountries_ListCountries__WEBPACK_IMPORTED_MODULE_3__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -2218,11 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_country_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/country/actions */ "./src/redux/country/actions.js");
-/* harmony import */ var _components_uielements_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/uielements/input */ "./src/components/uielements/input.js");
-/* harmony import */ var _components_uielements_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/uielements/button */ "./src/components/uielements/button.js");
-/* harmony import */ var _components_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/item */ "./src/components/item.js");
-
-
+/* harmony import */ var _components_autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/autocomplete */ "./src/components/autocomplete.js");
 
 
 
@@ -2264,27 +2236,17 @@ const Autocomplete = () => {
     dispatch((0,_redux_country_actions__WEBPACK_IMPORTED_MODULE_2__.addCountry)(search));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    ref: wrapperRef,
-    className: "select-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-country"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_uielements_input__WEBPACK_IMPORTED_MODULE_3__.default, {
-    search: search,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_autocomplete__WEBPACK_IMPORTED_MODULE_3__.default, {
+    wrapperRef: wrapperRef,
     setSearch: setSearch,
     setDisplay: setDisplay,
-    placeholder: "Choose a country timezone"
-  }), search && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_uielements_button__WEBPACK_IMPORTED_MODULE_4__.default, {
-    disabled: !search,
-    value: "Save",
-    onClick: saveOption
-  })), display && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: `options-container ${display ? "active" : ""}`
-  }, countries.filter(country => country.toLowerCase().indexOf(search.toLowerCase()) > -1).map((country, i) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_item__WEBPACK_IMPORTED_MODULE_5__.default, {
-    country: country,
-    key: i,
-    setCountry: setCountry
-  }))));
+    saveOption: saveOption,
+    search: search,
+    display: display,
+    countries: countries,
+    setCountry: setCountry,
+    cards: state.cards
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Autocomplete);
@@ -2353,10 +2315,12 @@ const Cards = props => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _containers_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/App */ "./src/containers/App.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/store */ "./src/redux/store.js");
+/* harmony import */ var _dist_sass_style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dist/sass/style.scss */ "./src/dist/sass/style.scss");
+
 
 
 
@@ -2365,7 +2329,7 @@ __webpack_require__.r(__webpack_exports__);
 
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {
   store: _redux_store__WEBPACK_IMPORTED_MODULE_4__.default
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_3__.default, null))), document.getElementById("app-root"));
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_3__.default, null))), document.getElementById("app-root"));
 
 /***/ }),
 
@@ -2616,6 +2580,151 @@ const transformtimezone = timezone => {
     date: (0,moment_timezone__WEBPACK_IMPORTED_MODULE_0__.tz)(timezone).format(frmDate),
     time: (0,moment_timezone__WEBPACK_IMPORTED_MODULE_0__.tz)(timezone).format(frmTime)
   };
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/dist/sass/style.scss":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/dist/sass/style.scss ***!
+  \***************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/*------------------------------------*\\\n* CONTAINER\n\\*------------------------------------*/\n/*------------------------------------*\\\n* COLUMNS\n\\*------------------------------------*/\n.container-autocomplete--input {\n  height: 35px;\n  display: flex;\n  flex-direction: row;\n}\n.container-autocomplete--input input {\n  width: 100%;\n  border-radius: 8px 0 0 8px;\n  border: 2px solid #9aa0a8;\n  padding-left: 5px;\n}\n.container-autocomplete--input input:focus {\n  outline-style: none;\n  border-color: #525861;\n}\n.container-autocomplete--input .button-active,\n.container-autocomplete--input .button-disabled {\n  padding: 8px;\n  background: #525861;\n  cursor: pointer;\n  color: #ffffff;\n  border: 1px solid #525861;\n  border-radius: 0 8px 8px 0;\n  align-self: center;\n}\n.container-autocomplete--input .button-active:focus, .container-autocomplete--input .button-active:active,\n.container-autocomplete--input .button-disabled:focus,\n.container-autocomplete--input .button-disabled:active {\n  outline-style: none;\n}\n.container-autocomplete--input .button-active:active,\n.container-autocomplete--input .button-disabled:active {\n  background: #9aa0a8;\n  border: 1px solid #9aa0a8;\n}\n.container-autocomplete--input .button-disabled {\n  background: #9aa0a8;\n  border-radius: 0 8px 8px 0;\n  cursor: auto;\n}\n.container-autocomplete--input .button-disabled:active {\n  background: none;\n}\n\n.container-autocomplete--select {\n  background: #2f3640;\n  color: #f5f6fa;\n  max-height: 0;\n  opacity: 0;\n  transition: all 0.4s;\n}\n.container-autocomplete--select .option {\n  cursor: pointer;\n  padding: 10px;\n}\n.container-autocomplete--select .option:hover {\n  background: #414b57;\n}\n.container-autocomplete--select .option-disabled {\n  background: #414b57;\n}\n.container-autocomplete--select::-webkit-scrollbar {\n  width: 8px;\n  background: #0d141f;\n  border-radius: 0 8px 8px 0;\n}\n.container-autocomplete--select::-webkit-scrollbar-thumb {\n  background: #525861;\n  height: 80px;\n}\n\n.active {\n  max-height: 240px;\n  opacity: 1;\n  overflow-y: scroll;\n}\n\n.container-list--cards {\n  max-width: 84rem;\n  margin: 0 auto;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n.container-list--cards .row {\n  display: flex;\n  flex-wrap: wrap;\n}\n@media (max-width: 768px) {\n  .container-list--cards .row {\n    /*------------------------------------*\\\n    # COLUMNS\n    \\*------------------------------------*/\n    /*------------------------------------*\\\n    # OFFSET COLUMNS\n    \\*------------------------------------*/\n  }\n  .container-list--cards .row .col-xs-1 {\n    width: 100%;\n  }\n  .container-list--cards .row .col-xs-2 {\n    width: 50%;\n  }\n  .container-list--cards .row .col-xs-3 {\n    width: 33.3333333333%;\n  }\n  .container-list--cards .row .col-xs-4 {\n    width: 25%;\n  }\n  .container-list--cards .row .col-xs-5 {\n    width: 20%;\n  }\n  .container-list--cards .row .col-xs-6 {\n    width: 16.6666666667%;\n  }\n  .container-list--cards .row .col-xs-7 {\n    width: 14.2857142857%;\n  }\n  .container-list--cards .row .col-xs-8 {\n    width: 12.5%;\n  }\n  .container-list--cards .row .col-xs-9 {\n    width: 11.1111111111%;\n  }\n  .container-list--cards .row .col-xs-10 {\n    width: 10%;\n  }\n  .container-list--cards .row .col-xs-11 {\n    width: 9.0909090909%;\n  }\n  .container-list--cards .row .col-xs-12 {\n    width: 8.3333333333%;\n  }\n  .container-list--cards .row .col-xs-13 {\n    width: 7.6923076923%;\n  }\n  .container-list--cards .row .col-xs-offset-1 {\n    margin-left: 8.3333333333%;\n  }\n  .container-list--cards .row .col-xs-offset-2 {\n    margin-left: 16.6666666667%;\n  }\n  .container-list--cards .row .col-xs-offset-3 {\n    margin-left: 25%;\n  }\n  .container-list--cards .row .col-xs-offset-4 {\n    margin-left: 33.3333333333%;\n  }\n  .container-list--cards .row .col-xs-offset-5 {\n    margin-left: 41.6666666667%;\n  }\n  .container-list--cards .row .col-xs-offset-6 {\n    margin-left: 50%;\n  }\n  .container-list--cards .row .col-xs-offset-7 {\n    margin-left: 58.3333333333%;\n  }\n  .container-list--cards .row .col-xs-offset-8 {\n    margin-left: 66.6666666667%;\n  }\n  .container-list--cards .row .col-xs-offset-9 {\n    margin-left: 75%;\n  }\n  .container-list--cards .row .col-xs-offset-10 {\n    margin-left: 83.3333333333%;\n  }\n  .container-list--cards .row .col-xs-offset-11 {\n    margin-left: 91.6666666667%;\n  }\n  .container-list--cards .row .col-xs-offset-12 {\n    margin-left: 100%;\n  }\n}\n@media (min-width: 768px) {\n  .container-list--cards .row {\n    /*------------------------------------*\\\n    # COLUMNS\n    \\*------------------------------------*/\n    /*------------------------------------*\\\n    # OFFSET COLUMNS\n    \\*------------------------------------*/\n  }\n  .container-list--cards .row .col-sm-1 {\n    width: 100%;\n  }\n  .container-list--cards .row .col-sm-2 {\n    width: 50%;\n  }\n  .container-list--cards .row .col-sm-3 {\n    width: 33.3333333333%;\n  }\n  .container-list--cards .row .col-sm-4 {\n    width: 25%;\n  }\n  .container-list--cards .row .col-sm-5 {\n    width: 20%;\n  }\n  .container-list--cards .row .col-sm-6 {\n    width: 16.6666666667%;\n  }\n  .container-list--cards .row .col-sm-7 {\n    width: 14.2857142857%;\n  }\n  .container-list--cards .row .col-sm-8 {\n    width: 12.5%;\n  }\n  .container-list--cards .row .col-sm-9 {\n    width: 11.1111111111%;\n  }\n  .container-list--cards .row .col-sm-10 {\n    width: 10%;\n  }\n  .container-list--cards .row .col-sm-11 {\n    width: 9.0909090909%;\n  }\n  .container-list--cards .row .col-sm-12 {\n    width: 8.3333333333%;\n  }\n  .container-list--cards .row .col-sm-13 {\n    width: 7.6923076923%;\n  }\n  .container-list--cards .row .col-sm-offset-1 {\n    margin-left: 8.3333333333%;\n  }\n  .container-list--cards .row .col-sm-offset-2 {\n    margin-left: 16.6666666667%;\n  }\n  .container-list--cards .row .col-sm-offset-3 {\n    margin-left: 25%;\n  }\n  .container-list--cards .row .col-sm-offset-4 {\n    margin-left: 33.3333333333%;\n  }\n  .container-list--cards .row .col-sm-offset-5 {\n    margin-left: 41.6666666667%;\n  }\n  .container-list--cards .row .col-sm-offset-6 {\n    margin-left: 50%;\n  }\n  .container-list--cards .row .col-sm-offset-7 {\n    margin-left: 58.3333333333%;\n  }\n  .container-list--cards .row .col-sm-offset-8 {\n    margin-left: 66.6666666667%;\n  }\n  .container-list--cards .row .col-sm-offset-9 {\n    margin-left: 75%;\n  }\n  .container-list--cards .row .col-sm-offset-10 {\n    margin-left: 83.3333333333%;\n  }\n  .container-list--cards .row .col-sm-offset-11 {\n    margin-left: 91.6666666667%;\n  }\n  .container-list--cards .row .col-sm-offset-12 {\n    margin-left: 100%;\n  }\n}\n@media (min-width: 992px) {\n  .container-list--cards .row {\n    /*------------------------------------*\\\n    # COLUMNS\n    \\*------------------------------------*/\n    /*------------------------------------*\\\n    # OFFSET COLUMNS\n    \\*------------------------------------*/\n  }\n  .container-list--cards .row .col-md-1 {\n    width: 100%;\n  }\n  .container-list--cards .row .col-md-2 {\n    width: 50%;\n  }\n  .container-list--cards .row .col-md-3 {\n    width: 33.3333333333%;\n  }\n  .container-list--cards .row .col-md-4 {\n    width: 25%;\n  }\n  .container-list--cards .row .col-md-5 {\n    width: 20%;\n  }\n  .container-list--cards .row .col-md-6 {\n    width: 16.6666666667%;\n  }\n  .container-list--cards .row .col-md-7 {\n    width: 14.2857142857%;\n  }\n  .container-list--cards .row .col-md-8 {\n    width: 12.5%;\n  }\n  .container-list--cards .row .col-md-9 {\n    width: 11.1111111111%;\n  }\n  .container-list--cards .row .col-md-10 {\n    width: 10%;\n  }\n  .container-list--cards .row .col-md-11 {\n    width: 9.0909090909%;\n  }\n  .container-list--cards .row .col-md-12 {\n    width: 8.3333333333%;\n  }\n  .container-list--cards .row .col-md-13 {\n    width: 7.6923076923%;\n  }\n  .container-list--cards .row .col-md-offset-1 {\n    margin-left: 8.3333333333%;\n  }\n  .container-list--cards .row .col-md-offset-2 {\n    margin-left: 16.6666666667%;\n  }\n  .container-list--cards .row .col-md-offset-3 {\n    margin-left: 25%;\n  }\n  .container-list--cards .row .col-md-offset-4 {\n    margin-left: 33.3333333333%;\n  }\n  .container-list--cards .row .col-md-offset-5 {\n    margin-left: 41.6666666667%;\n  }\n  .container-list--cards .row .col-md-offset-6 {\n    margin-left: 50%;\n  }\n  .container-list--cards .row .col-md-offset-7 {\n    margin-left: 58.3333333333%;\n  }\n  .container-list--cards .row .col-md-offset-8 {\n    margin-left: 66.6666666667%;\n  }\n  .container-list--cards .row .col-md-offset-9 {\n    margin-left: 75%;\n  }\n  .container-list--cards .row .col-md-offset-10 {\n    margin-left: 83.3333333333%;\n  }\n  .container-list--cards .row .col-md-offset-11 {\n    margin-left: 91.6666666667%;\n  }\n  .container-list--cards .row .col-md-offset-12 {\n    margin-left: 100%;\n  }\n}\n@media (min-width: 1200px) {\n  .container-list--cards .row {\n    /*------------------------------------*\\\n    # COLUMNS\n    \\*------------------------------------*/\n    /*------------------------------------*\\\n    # OFFSET COLUMNS\n    \\*------------------------------------*/\n  }\n  .container-list--cards .row .col-lg-1 {\n    width: 100%;\n  }\n  .container-list--cards .row .col-lg-2 {\n    width: 50%;\n  }\n  .container-list--cards .row .col-lg-3 {\n    width: 33.3333333333%;\n  }\n  .container-list--cards .row .col-lg-4 {\n    width: 25%;\n  }\n  .container-list--cards .row .col-lg-5 {\n    width: 20%;\n  }\n  .container-list--cards .row .col-lg-6 {\n    width: 16.6666666667%;\n  }\n  .container-list--cards .row .col-lg-7 {\n    width: 14.2857142857%;\n  }\n  .container-list--cards .row .col-lg-8 {\n    width: 12.5%;\n  }\n  .container-list--cards .row .col-lg-9 {\n    width: 11.1111111111%;\n  }\n  .container-list--cards .row .col-lg-10 {\n    width: 10%;\n  }\n  .container-list--cards .row .col-lg-11 {\n    width: 9.0909090909%;\n  }\n  .container-list--cards .row .col-lg-12 {\n    width: 8.3333333333%;\n  }\n  .container-list--cards .row .col-lg-13 {\n    width: 7.6923076923%;\n  }\n  .container-list--cards .row .col-lg-offset-1 {\n    margin-left: 8.3333333333%;\n  }\n  .container-list--cards .row .col-lg-offset-2 {\n    margin-left: 16.6666666667%;\n  }\n  .container-list--cards .row .col-lg-offset-3 {\n    margin-left: 25%;\n  }\n  .container-list--cards .row .col-lg-offset-4 {\n    margin-left: 33.3333333333%;\n  }\n  .container-list--cards .row .col-lg-offset-5 {\n    margin-left: 41.6666666667%;\n  }\n  .container-list--cards .row .col-lg-offset-6 {\n    margin-left: 50%;\n  }\n  .container-list--cards .row .col-lg-offset-7 {\n    margin-left: 58.3333333333%;\n  }\n  .container-list--cards .row .col-lg-offset-8 {\n    margin-left: 66.6666666667%;\n  }\n  .container-list--cards .row .col-lg-offset-9 {\n    margin-left: 75%;\n  }\n  .container-list--cards .row .col-lg-offset-10 {\n    margin-left: 83.3333333333%;\n  }\n  .container-list--cards .row .col-lg-offset-11 {\n    margin-left: 91.6666666667%;\n  }\n  .container-list--cards .row .col-lg-offset-12 {\n    margin-left: 100%;\n  }\n}\n\n.card-item {\n  height: 200px;\n  margin: 0 auto;\n  background: #b8b5b5;\n  font-size: large;\n  padding: 5px;\n  border-radius: 10px;\n  display: flex;\n  flex-direction: column;\n}\n.card-item:hover {\n  animation: shadow infinite 1s;\n}\n@keyframes shadow {\n  from {\n    box-shadow: 0px 0px 30px -5px #000000;\n  }\n  to {\n    box-shadow: 0px 0px 10px -5px #000000;\n  }\n}\n.card-item .card-item--delete {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n.card-item .card-item--delete div {\n  color: cornsilk;\n  background: #0d141f;\n  height: 30px;\n  width: 30px;\n  cursor: pointer;\n  border-radius: 15px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.card-item .card-item--delete div:hover {\n  background: #131d2c;\n}\n.card-item .card-item--delete div:active {\n  background: #2f3640;\n  box-shadow: 0px 0px 10px #000000;\n}\n.card-item .card-item--information {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-evenly;\n  flex: 1;\n}\n.card-item .card-item--information .card-item--timezone {\n  font-weight: bold;\n}\n\nhtml,\nbody,\n#app-root {\n  background: #ebe9e9;\n  height: 100%;\n  margin: 0;\n  display: flex;\n  flex-direction: column;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.container {\n  width: 100%;\n  padding-top: 50px;\n  display: grid;\n  gap: 5px;\n}\n.container .container-autocomplete {\n  justify-content: center;\n  height: 270px;\n  width: 70%;\n  margin: 0 auto;\n}\n.container .container-list--cards {\n  width: 90%;\n}", "",{"version":3,"sources":["webpack://./src/dist/sass/_variables.scss","webpack://./src/dist/sass/_search.scss","webpack://./src/dist/sass/style.scss","webpack://./src/dist/sass/_colors.scss","webpack://./src/dist/sass/_select.scss","webpack://./src/dist/sass/_grid.scss","webpack://./src/dist/sass/_mixins.scss","webpack://./src/dist/sass/_card.scss"],"names":[],"mappings":"AAAA;;uCAAA;AAKA;;uCAAA;ACLA;EACI,YAAA;EACA,aAAA;EACA,mBAAA;ACOJ;ADLI;EACI,WAAA;EACA,0BAAA;EACA,yBAAA;EACA,iBAAA;ACOR;ADLQ;EACI,mBAAA;EACA,qBAAA;ACOZ;ADHI;;EAEI,YAAA;EACA,mBAAA;EACA,eAAA;EACA,cErBA;EFsBA,yBAAA;EACA,0BAAA;EAEA,kBAAA;ACIR;ADFQ;;;EAEI,mBAAA;ACKZ;ADFQ;;EACI,mBAAA;EACA,yBAAA;ACKZ;ADDI;EACI,mBAAA;EACA,0BAAA;EACA,YAAA;ACGR;ADFQ;EACI,gBAAA;ACIZ;;AEhDA;EACI,mBAAA;EACA,cAAA;EACA,aAAA;EACA,UAAA;EACA,oBAAA;AFmDJ;AEjDI;EACI,eAAA;EACA,aAAA;AFmDR;AEjDQ;EACI,mBAAA;AFmDZ;AE/CI;EACI,mBAAA;AFiDR;AE9CI;EACI,UAAA;EACA,mBAAA;EACA,0BAAA;AFgDR;AE7CI;EACI,mBAAA;EACA,YAAA;AF+CR;;AE1CA;EACI,iBAAA;EACA,UAAA;EACA,kBAAA;AF6CJ;;AG/EA;EACI,gBAAA;EACA,cAAA;EACA,iBAAA;EACA,oBAAA;AHkFJ;AGhFI;EACI,aAAA;EACA,eAAA;AHkFR;AI3FI;EDOA;ICkBA;;2CAAA;IASA;;2CAAA;EJkEF;EIvEM;IACI,WAAA;EJyEV;EI1EM;IACI,UAAA;EJ4EV;EI7EM;IACI,qBAAA;EJ+EV;EIhFM;IACI,UAAA;EJkFV;EInFM;IACI,UAAA;EJqFV;EItFM;IACI,qBAAA;EJwFV;EIzFM;IACI,qBAAA;EJ2FV;EI5FM;IACI,YAAA;EJ8FV;EI/FM;IACI,qBAAA;EJiGV;EIlGM;IACI,UAAA;EJoGV;EIrGM;IACI,oBAAA;EJuGV;EIxGM;IACI,oBAAA;EJ0GV;EI3GM;IACI,oBAAA;EJ6GV;EIpGU;IACI,0BAAA;EJsGd;EIvGU;IACI,2BAAA;EJyGd;EI1GU;IACI,gBAAA;EJ4Gd;EI7GU;IACI,2BAAA;EJ+Gd;EIhHU;IACI,2BAAA;EJkHd;EInHU;IACI,gBAAA;EJqHd;EItHU;IACI,2BAAA;EJwHd;EIzHU;IACI,2BAAA;EJ2Hd;EI5HU;IACI,gBAAA;EJ8Hd;EI/HU;IACI,2BAAA;EJiId;EIlIU;IACI,2BAAA;EJoId;EIrIU;IACI,iBAAA;EJuId;AACF;AI1KI;EDCA;ICkBA;;2CAAA;IASA;;2CAAA;EJuJF;EI5JM;IACI,WAAA;EJ8JV;EI/JM;IACI,UAAA;EJiKV;EIlKM;IACI,qBAAA;EJoKV;EIrKM;IACI,UAAA;EJuKV;EIxKM;IACI,UAAA;EJ0KV;EI3KM;IACI,qBAAA;EJ6KV;EI9KM;IACI,qBAAA;EJgLV;EIjLM;IACI,YAAA;EJmLV;EIpLM;IACI,qBAAA;EJsLV;EIvLM;IACI,UAAA;EJyLV;EI1LM;IACI,oBAAA;EJ4LV;EI7LM;IACI,oBAAA;EJ+LV;EIhMM;IACI,oBAAA;EJkMV;EIzLU;IACI,0BAAA;EJ2Ld;EI5LU;IACI,2BAAA;EJ8Ld;EI/LU;IACI,gBAAA;EJiMd;EIlMU;IACI,2BAAA;EJoMd;EIrMU;IACI,2BAAA;EJuMd;EIxMU;IACI,gBAAA;EJ0Md;EI3MU;IACI,2BAAA;EJ6Md;EI9MU;IACI,2BAAA;EJgNd;EIjNU;IACI,gBAAA;EJmNd;EIpNU;IACI,2BAAA;EJsNd;EIvNU;IACI,2BAAA;EJyNd;EI1NU;IACI,iBAAA;EJ4Nd;AACF;AIzPI;EDLA;ICkBA;;2CAAA;IASA;;2CAAA;EJ4OF;EIjPM;IACI,WAAA;EJmPV;EIpPM;IACI,UAAA;EJsPV;EIvPM;IACI,qBAAA;EJyPV;EI1PM;IACI,UAAA;EJ4PV;EI7PM;IACI,UAAA;EJ+PV;EIhQM;IACI,qBAAA;EJkQV;EInQM;IACI,qBAAA;EJqQV;EItQM;IACI,YAAA;EJwQV;EIzQM;IACI,qBAAA;EJ2QV;EI5QM;IACI,UAAA;EJ8QV;EI/QM;IACI,oBAAA;EJiRV;EIlRM;IACI,oBAAA;EJoRV;EIrRM;IACI,oBAAA;EJuRV;EI9QU;IACI,0BAAA;EJgRd;EIjRU;IACI,2BAAA;EJmRd;EIpRU;IACI,gBAAA;EJsRd;EIvRU;IACI,2BAAA;EJyRd;EI1RU;IACI,2BAAA;EJ4Rd;EI7RU;IACI,gBAAA;EJ+Rd;EIhSU;IACI,2BAAA;EJkSd;EInSU;IACI,2BAAA;EJqSd;EItSU;IACI,gBAAA;EJwSd;EIzSU;IACI,2BAAA;EJ2Sd;EI5SU;IACI,2BAAA;EJ8Sd;EI/SU;IACI,iBAAA;EJiTd;AACF;AIxUI;EDXA;ICkBA;;2CAAA;IASA;;2CAAA;EJiUF;EItUM;IACI,WAAA;EJwUV;EIzUM;IACI,UAAA;EJ2UV;EI5UM;IACI,qBAAA;EJ8UV;EI/UM;IACI,UAAA;EJiVV;EIlVM;IACI,UAAA;EJoVV;EIrVM;IACI,qBAAA;EJuVV;EIxVM;IACI,qBAAA;EJ0VV;EI3VM;IACI,YAAA;EJ6VV;EI9VM;IACI,qBAAA;EJgWV;EIjWM;IACI,UAAA;EJmWV;EIpWM;IACI,oBAAA;EJsWV;EIvWM;IACI,oBAAA;EJyWV;EI1WM;IACI,oBAAA;EJ4WV;EInWU;IACI,0BAAA;EJqWd;EItWU;IACI,2BAAA;EJwWd;EIzWU;IACI,gBAAA;EJ2Wd;EI5WU;IACI,2BAAA;EJ8Wd;EI/WU;IACI,2BAAA;EJiXd;EIlXU;IACI,gBAAA;EJoXd;EIrXU;IACI,2BAAA;EJuXd;EIxXU;IACI,2BAAA;EJ0Xd;EI3XU;IACI,gBAAA;EJ6Xd;EI9XU;IACI,2BAAA;EJgYd;EIjYU;IACI,2BAAA;EJmYd;EIpYU;IACI,iBAAA;EJsYd;AACF;;AKhbA;EACI,aAAA;EAEA,cAAA;EACA,mBAAA;EACA,gBAAA;EACA,YAAA;EACA,mBAAA;EAEA,aAAA;EACA,sBAAA;ALibJ;AK9aI;EACI,6BAAA;ALgbR;AK9aQ;EACI;IACI,qCAAA;ELgbd;EK7aU;IACI,qCAAA;EL+ad;AACF;AK1aI;EACI,aAAA;EACA,yBAAA;EACA,mBAAA;AL4aR;AK1aQ;EACI,eAAA;EACA,mBAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;EACA,mBAAA;EAEA,aAAA;EACA,uBAAA;EACA,mBAAA;AL2aZ;AKzaY;EACI,mBAAA;AL2ahB;AKxaY;EACI,mBAAA;EACA,gCAAA;AL0ahB;AKraI;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,6BAAA;EACA,OAAA;ALuaR;AKtaQ;EACI,iBAAA;ALwaZ;;AA/dA;;;EAGI,mBAAA;EACA,YAAA;EACA,SAAA;EACA,aAAA;EACA,sBAAA;EACA,yCAAA;AAkeJ;;AA/dA;EACI,WAAA;EACA,iBAAA;EACA,aAAA;EACA,QAAA;AAkeJ;AA/dI;EACI,uBAAA;EACA,aAAA;EACA,UAAA;EACA,cAAA;AAieR;AA7dI;EACI,UAAA;AA+dR","sourcesContent":["/*------------------------------------*\\\n* CONTAINER\n\\*------------------------------------*/\n$container-max-width: 84rem;\n\n/*------------------------------------*\\\n* COLUMNS\n\\*------------------------------------*/\n$columns-number: 12;\n$gutter: 1rem;\n\n// Small devices (landscape phones, etc)\n$screen-xs-max: 768px;\n\n// Medium devices (tablets, 768px and up)\n$screen-sm-min: 768px;\n\n// Large devices (desktops, 992px and up)\n$screen-md-min: 992px;\n\n// Extra large devices (large desktops, 1200px and up)\n$screen-lg-min: 1200px;\n",".container-autocomplete--input {\n    height: 35px;\n    display: flex;\n    flex-direction: row;\n\n    input {\n        width: 100%;\n        border-radius: 8px 0 0 8px;\n        border: 2px solid #9aa0a8;\n        padding-left: 5px;\n\n        &:focus {\n            outline-style: none;\n            border-color: #525861;\n        }\n    }\n\n    .button-active,\n    .button-disabled {\n        padding: 8px;\n        background: #525861;\n        cursor: pointer;\n        color: $white;\n        border: 1px solid #525861;\n        border-radius: 0 8px 8px 0;\n        \n        align-self: center;\n        \n        &:focus,\n        &:active {\n            outline-style: none;\n        }\n        \n        &:active {\n            background: #9aa0a8;\n            border: 1px solid #9aa0a8;\n        }\n    }\n    \n    .button-disabled {\n        background: #9aa0a8;\n        border-radius: 0 8px 8px 0;\n        cursor: auto;\n        &:active {\n            background: none;\n        }\n    }\n}","@import \"./variables\";\n@import \"./colors\";\n@import \"./mixins\";\n@import \"./search\";\n@import \"./select\";\n@import \"./grid\";\n@import \"./card\";\n\nhtml,\nbody,\n#app-root {\n    background: #ebe9e9;\n    height: 100%;\n    margin: 0;\n    display: flex;\n    flex-direction: column;\n    font-family: Arial, Helvetica, sans-serif;\n}\n\n.container {\n    width: 100%;\n    padding-top: 50px;\n    display: grid;\n    gap: 5px;\n\n    \n    .container-autocomplete {\n        justify-content: center;\n        height: 270px;\n        width: 70%;\n        margin: 0 auto;\n        \n    }\n            \n    .container-list--cards{\n        width: 90%;\n\n    }\n\n}","$black: #000000;\n$white: #ffffff;",".container-autocomplete--select {\n    background: #2f3640;\n    color: #f5f6fa;\n    max-height: 0;\n    opacity: 0;\n    transition: all 0.4s;\n\n    .option {\n        cursor: pointer;\n        padding: 10px;\n\n        &:hover {\n            background: #414b57;\n        }\n    }\n\n    .option-disabled {\n        background: #414b57;\n    }\n\n    &::-webkit-scrollbar {\n        width: 8px;\n        background: #0d141f;\n        border-radius: 0 8px 8px 0;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background: #525861;\n        height: 80px;\n    }\n\n}\n\n.active {\n    max-height: 240px;\n    opacity: 1;\n    overflow-y: scroll;\n}","@import \"./mixins\";\n\n.container-list--cards {\n    max-width: $container-max-width;\n    margin: 0 auto;\n    padding-top: 20px;\n    padding-bottom: 20px;\n\n    .row {\n        display: flex;\n        flex-wrap: wrap;\n\n\n        @include xs {\n            @include gridGenerator($breakpoint: 'xs', $offset: true);\n        }\n\n        @include sm {\n            @include gridGenerator($breakpoint: 'sm', $offset: true);\n        }\n\n        @include md {\n            @include gridGenerator($breakpoint: 'md', $offset: true);\n        }\n\n        @include lg {\n            @include gridGenerator($breakpoint: 'lg', $offset: true);\n        }\n\n\n    }\n}","@mixin xs {\n    @media (max-width: #{$screen-xs-max}) {\n        @content;\n    }\n}\n\n@mixin sm {\n    @media (min-width: #{$screen-sm-min}) {\n        @content;\n    }\n}\n\n@mixin md {\n    @media (min-width: #{$screen-md-min}) {\n        @content;\n    }\n}\n\n@mixin lg {\n    @media (min-width: #{$screen-lg-min}) {\n        @content;\n    }\n}\n\n@mixin gridGenerator($breakpoint, $offset: false) {\n\n    /*------------------------------------*\\\n    # COLUMNS\n    \\*------------------------------------*/\n    @for $column from 1 through $columns-number+1 {\n        .col-#{$breakpoint}-#{$column} {\n            width: 100% / $column;\n        }\n    }\n\n    /*------------------------------------*\\\n    # OFFSET COLUMNS\n    \\*------------------------------------*/\n    @if $offset {\n        @for $column from 1 to $columns-number+1 {\n            .col-#{$breakpoint}-offset-#{$column} {\n                margin-left: (100% * $column) / $columns-number;\n            }\n        }\n    }\n}",".card-item {\n    height: 200px;\n    // width: 300px;\n    margin: 0 auto;\n    background: #b8b5b5;\n    font-size: large;\n    padding: 5px;\n    border-radius: 10px;\n\n    display: flex;\n    flex-direction: column;\n    \n\n    &:hover {\n        animation: shadow infinite 1s;\n\n        @keyframes shadow {\n            from {\n                box-shadow: 0px 0px 30px -5px $black;\n            }\n\n            to {\n                box-shadow: 0px 0px 10px -5px $black;\n            }\n        }\n\n    }\n\n    .card-item--delete {\n        display: flex;\n        justify-content: flex-end;\n        align-items: center;\n\n        div {\n            color: cornsilk;\n            background: #0d141f;\n            height: 30px;\n            width: 30px;\n            cursor: pointer;\n            border-radius: 15px;\n\n            display: flex;\n            justify-content: center;\n            align-items: center;\n\n            &:hover {\n                background: #131d2c;\n            }\n\n            &:active {\n                background: #2f3640;\n                box-shadow: 0px 0px 10px $black;\n            }\n        }\n    }\n\n    .card-item--information {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        justify-content: space-evenly;\n        flex: 1;\n        .card-item--timezone {\n            font-weight: bold;\n\n        }\n    }\n\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/cssWithMappingToString.js ***!
+  \************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function cssWithMappingToString(item) {
+  var _item = _slicedToArray(item, 4),
+      content = _item[1],
+      cssMapping = _item[3];
+
+  if (typeof btoa === "function") {
+    // eslint-disable-next-line no-undef
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+  }
+
+  return [content].join("\n");
 };
 
 /***/ }),
@@ -61124,6 +61233,315 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./src/dist/sass/style.scss":
+/*!**********************************!*\
+  !*** ./src/dist/sass/style.scss ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/dist/sass/style.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_style_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
 
 /***/ }),
 

@@ -1,0 +1,48 @@
+.container-autocomplete--input {
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+
+    input {
+        width: 100%;
+        border-radius: 8px 0 0 8px;
+        border: 2px solid #9aa0a8;
+        padding-left: 5px;
+
+        &:focus {
+            outline-style: none;
+            border-color: #525861;
+        }
+    }
+
+    .button-active,
+    .button-disabled {
+        padding: 8px;
+        background: #525861;
+        cursor: pointer;
+        color: $white;
+        border: 1px solid #525861;
+        border-radius: 0 8px 8px 0;
+        
+        align-self: center;
+        
+        &:focus,
+        &:active {
+            outline-style: none;
+        }
+        
+        &:active {
+            background: #9aa0a8;
+            border: 1px solid #9aa0a8;
+        }
+    }
+    
+    .button-disabled {
+        background: #9aa0a8;
+        border-radius: 0 8px 8px 0;
+        cursor: auto;
+        &:active {
+            background: none;
+        }
+    }
+}

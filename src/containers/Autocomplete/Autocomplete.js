@@ -3,9 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 
 import {addCountry} from "../../redux/country/actions";
 
-import Input from "../../components/uielements/input";
-import Button from "../../components/uielements/button";
-import Item from "../../components/item";
+import AutocompleteComponent from "../../components/autocomplete";
 
 const Autocomplete = () => {
     const state = useSelector(state => state.Country);
@@ -46,38 +44,17 @@ const Autocomplete = () => {
     }
     
     return (
-        <div ref={wrapperRef} className="select-box">
-            <div  className="search-country">
-                <Input
-                    search={search}
-                    setSearch={setSearch}
-                    setDisplay={setDisplay}
-                    placeholder="Choose a country timezone"
-                    />
-                    {search &&
-                        <Button 
-                        disabled={!search}
-                        value="Save"
-                        onClick={saveOption}
-                        />
-                    }
-            </div>
-
-            {display &&
-                <div className={`options-container ${display ? "active" : ""}`}>
-                    {countries
-                        .filter(country => country.toLowerCase().indexOf(search.toLowerCase()) > -1)
-                        .map((country, i) => 
-                            <Item 
-                                country={country}
-                                key={i}
-                                setCountry={setCountry}
-                            />
-                        )
-                    }
-                </div>
-            }
-        </div>
+        <AutocompleteComponent
+            wrapperRef={wrapperRef}
+            setSearch={setSearch}
+            setDisplay={setDisplay}
+            saveOption={saveOption}
+            search={search}
+            display={display}
+            countries={countries}
+            setCountry={setCountry}
+            cards={state.cards}
+        />
     );
 }
 
