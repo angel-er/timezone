@@ -2388,7 +2388,6 @@ const getCountries = () => dispatch => {
 const addCountry = name => dispatch => {
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get(`${API_URL}/api/timezone/${name}`).then(response => {
     if (response.status === 200) {
-      console.log("Response one timezone: ", response.data);
       dispatch(postCountry(response.data));
     }
   }).catch(request => {
