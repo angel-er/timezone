@@ -24,6 +24,7 @@ const Autocomplete = ({
                         onChange={event => setSearch(event.target.value)}
                         onClick={() => setDisplay(true)}  
                     />
+                    <div className={`autocomplete--input-delete-${!search ? "disabled" : "active"}`} onClick={() => setSearch("")}/>
                     <button 
                         className={`button-${!search || !disactiveBtn ? "disabled" : "active"}`}
                         onClick={saveOption} 

@@ -15,11 +15,42 @@
         *********************************************************************/
         @include btnAutocomplete(none, $btnBorderColor, 2px);
         padding-left: 5px;
+        border-right: none;
 
         &:focus {
             outline-style: none;
             border-color: #525861;
         }
+    }
+
+    .autocomplete--input-delete-active {
+        width: 30px;
+        @include btnAutocomplete(none, $btnBorderColor, 2px);
+        border-left: none;
+        
+        &::before {
+            content: "x";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            
+            width: 30px;
+            height: 30px;
+            background: rgb(217, 218, 217);
+            border-radius: 15px;
+            
+        }
+
+        &:hover{
+            &::before {
+                background: rgb(164, 165, 163);
+                color: $white;
+            }
+            
+        }
+        
+        
     }
 
     .button-active,
